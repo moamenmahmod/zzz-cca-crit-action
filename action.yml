@@ -1,0 +1,13 @@
+name: 'demo-consumed-action'
+description: 'models a widely-consumed action pinned by downstream repos as @v1'
+inputs:
+  api_key:
+    description: 'a credential the consumer hands to the action (as consumers pass anthropic_api_key)'
+    required: true
+runs:
+  using: 'composite'
+  steps:
+    - shell: bash
+      run: echo "benign v1: received an api_key input of length ${#KEY} and did nothing with it"
+      env:
+        KEY: ${{ inputs.api_key }}
